@@ -97,7 +97,7 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 {
   "access_token": string,
   "refresh_token": string,
-  "expires_in": nubmer
+  "expires_in": number
 }
 ```
 O atributo recebido `access_token` te garante acessar as informações a partir daqui, o `refresh_token` é o token utilizado para atualizar seu `access_token` quando o mesmo expirar e `expires_in` representa o tempo de expiração do seu token de acesso (sempre em segundos).
