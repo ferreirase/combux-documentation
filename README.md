@@ -2,7 +2,7 @@
 
 # :beginner: Introdução
 
-Este documento visa apresentar os recursos disponibilizados pela [Combux](https://www.combux.com.br/) via `API` para integração com parceiros e interessados.
+Este documento visa apresentar os recursos disponibilizados pela [Combux](https://www.combux.com.br/) via `API` para integração com parceiros.
 
 ## :key: Autorização
 
@@ -182,7 +182,7 @@ Os seguintes dados devem ser enviados juntos no form-data:
 | Parameter | Type | Required | Description
 | :--- | :--- | :--- | :---
 | `gas_station.cod_unity` | `string` | **TRUE**| Código que identifica um posto como único.
-| `gas_station.cnpj` | `string` | **TRUE**| CNPJ do posto.
+| `gas_station.cnpj` | `string` | **TRUE**| `CNPJ` do posto(com máscara).
 | `coordinates.latitude` | `string` | **FALSE**| Latitude na localização do posto.
 | `coordinates.longitude` | `string` | **FALSE**| Longitude na localização do posto.
 
