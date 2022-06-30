@@ -105,9 +105,9 @@ O atributo recebido `access_token` te garante acessar as informações a partir 
 #### 3. Atualizando `access_token` através do `refresh_token`:
 O `header` desta requisição deve conter as seguintes informações:
 ```http
-Content-Type: application/json;Authorization: Bearer client_id:client_secret
+Content-Type: application/json;Authorization: Bearer base64_string
 ```
-**Note**: Esse `client_id:client_secret` deve ser uma string convertida em Base64.
+:heavy_exclamation_mark: **Nota**: Esse `base64_string` deve ser uma string convertida em Base64 a partir do dado `client_id:client_secret`.
 
 
 O `endpoint` para obtenção de um novo `access_token` é: 
