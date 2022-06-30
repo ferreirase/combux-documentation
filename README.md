@@ -1,10 +1,10 @@
 <img alt="GoStack" src="https://scontent.fgyn21-1.fna.fbcdn.net/v/t1.6435-9/143499329_347249869697972_1658415451933314067_n.png?stp=dst-png_s960x960&_nc_cat=104&ccb=1-7&_nc_sid=e3f864&_nc_ohc=MyP9ttzI2KYAX9n0aYF&_nc_ht=scontent.fgyn21-1.fna&oh=00_AT8fCfMSeYsVG79fj14Hi7oO3ckbahI76428R9z6VV1Fxg&oe=62E3D64A" />
 
-# Introdução
+# :beginner: Introdução
 
 Este documento visa apresentar os recursos disponibilizados pela [Combux](https://www.combux.com.br/) via `API` para integração com parceiros e interessados.
 
-## Autorização
+## :key: Autorização
 
 É preciso estar devidamente `autenticado` e `autorizado` para ter acesso aos recursos disponibilizados em nossa `API`. 
 
@@ -35,9 +35,9 @@ O corpo desta requisição deve conter:
 | `client_id` | `string` | **TRUE**| Disponibilizado em contrato.
 | `client_secret` | `string` | **TRUE**| Disponibilizado em contrato.
 
-A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
+A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato `JSON`:
 
-### Se der algo errado:
+### :x: Se der algo errado:
 ```javascript
 {
   "message" : string,
@@ -46,7 +46,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
 ```
 O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
 
-### Se der tudo certo:
+### :heavy_check_mark: Se der tudo certo:
 ```javascript
 {
   "authorization_code" : string
@@ -58,9 +58,9 @@ O atributo recebido `authorization_code` te garante passar para a próxima etapa
 #### 2. Gerando `access_token` e `refresh_token`:
 O `header` desta requisição deve conter as seguintes informações:
 ```http
-Content-Type: application/json;Authorization: Basic client_id:client_secret
+Content-Type: application/json;Authorization: Basic base64_string
 ```
-**Note**: Esse `client_id:client_secret` deve ser uma string convertida em Base64.
+:heavy_exclamation_mark: **Nota**: Esse `base64_string` deve ser uma string convertida em Base64 a partir do dado `client_id:client_secret`.
 
 
 O `endpoint` para obtenção do `access_token` e `refresh_token` é: 
@@ -83,7 +83,7 @@ O corpo desta requisição deve conter:
 
 A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
 
-### Se der algo errado:
+### :x: Se der algo errado:
 ```javascript
 {
   "message" : string,
@@ -92,7 +92,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
 ```
 O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
 
-### Se der tudo certo:
+### :heavy_check_mark: Se der tudo certo:
 ```javascript
 {
   "access_token": string,
@@ -128,7 +128,7 @@ O corpo desta requisição deve conter:
 
 A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
 
-### Se der algo errado:
+### :x: Se der algo errado:
 ```javascript
 {
   "message" : string,
@@ -137,7 +137,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
 ```
 O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
 
-### Se der tudo certo:
+### :heavy_check_mark: Se der tudo certo:
 ```javascript
 {
   "access_token": string,
@@ -147,15 +147,152 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 ```
 O atributo recebido `access_token` é o seu novo token de acesso, o `refresh_token` é o token utilizado para atualizar novamente seu `access_token` quando o mesmo expirar e `expires_in` representa o tempo de expiração do seu novo token de acesso (sempre em segundos).
 
+## :open_file_folder: Recursos
+
+Depois de autenticado e autorizado, os seguintes recursos, nas suas respectivas rotas, estarão disponíveis para serem acessados:
+
+1. Atualização de preços por foto
+
+
+O `header` desta requisição deve conter as seguintes informações:
+```http
+Content-Type: multipart/form-data;Authorization: Bearer access_token
+```
+
+```http
+POST /prices/photo
+```
+
+Os seguintes dados devem ser enviados juntos no form-data: 
+
+```javascript
+{
+  "gas_station" : {
+    "cod_unity": number,
+    "cnpj": string
+  },
+  "coordinates?": {
+    "latitude": string,
+    "longitude": string
+  },
+  "photo": file
+}
+```
+
+| Parameter | Type | Required | Description
+| :--- | :--- | :--- | :---
+| `gas_station.cod_unity` | `string` | **TRUE**| Código que identifica um posto como único.
+| `gas_station.cnpj` | `string` | **TRUE**| CNPJ do posto.
+| `coordinates.latitude` | `string` | **FALSE**| Latitude na localização do posto.
+| `coordinates.longitude` | `string` | **FALSE**| Longitude na localização do posto.
+
+A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
+
+### :x: Se der algo errado:
+```javascript
+{
+  "message" : string,
+  "code" : number
+}
+```
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+
+### :heavy_check_mark: Se der tudo certo:
+```javascript
+{
+    "posto": {
+      "gas_station" : {
+      "cod_unity": number,
+      "cnpj": string,
+      "coordinates?": {
+        "latitude": string,
+        "longitude": string
+       },
+      "photo_url": string
+      },
+      "created_at": string,
+      "prices: [
+        {
+          "type": number/int,
+          "price": number/float
+        },
+        ...
+      ]
+    
+  }
+}
+```
+
+O objeto retornado `posto` contém as informações do posto,  o `created_at` é a data de criação da foto  no formato ISO e o `prices` é um array de preços extraídos da foto enviada.
+
+2. Atualização de preços manualmente
+
+
+O `header` desta requisição deve conter as seguintes informações:
+```http
+Content-Type: application/json;Authorization: Bearer access_token
+```
+
+```http
+POST /prices/manual
+```
+
+O corpo desta requisição deve conter: 
+
+```javascript
+{
+  "gas_station" : {
+    "cod_unity": number,
+    "cnpj": string
+  },
+  "coordinates?": {
+    "latitude": string,
+    "longitude": string
+  },
+  "prices": [
+    {
+      "type": number/int,
+      "price": number/float
+    },
+    ...
+  ]
+}
+```
+
+| Parameter | Type | Required | Description
+| :--- | :--- | :--- | :---
+| `gas_station.cod_unity` | `string` | **TRUE**| Código que identifica um posto como único.
+| `gas_station.cnpj` | `string` | **TRUE**| CNPJ do posto.
+| `coordinates.latitude` | `string` | **FALSE**| Latitude na localização do posto.
+| `coordinates.longitude` | `string` | **FALSE**| Longitude na localização do posto.
+| `prices.type` | `number/int` | **TRUE**| Código do tipo de combustível.
+| `prices.price` | `number/float` | **TRUE**| Preço do combustível.
+
+A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
+
+### :x: Se der algo errado:
+```javascript
+{
+  "message" : string,
+  "code" : number
+}
+```
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+
+### :heavy_check_mark: Se der tudo certo:
+```javascript
+{
+  "success": boolean
+}
+```
 
 ## Status Codes
 
-Gophish returns the following status codes in its API:
-
 | Status Code | Description |
 | :--- | :--- |
-| 200 | `OK` |
-| 201 | `CREATED` |
-| 400 | `BAD REQUEST` |
-| 404 | `NOT FOUND` |
-| 500 | `INTERNAL SERVER ERROR` |
+| 🟢 200 | `OK` | Requisição realizada com sucesso
+|  🟢 201 | `CREATED` | Recurso criado com sucesso
+|:red_circle: 400 | `BAD REQUEST` | Erro na solicitação
+| :red_circle: 401 | `UNAUTHORIZED` | Recurso não autorizado
+| :red_circle: 404 | `NOT FOUND` | Recurso não encontrado
+| :red_circle: 500 | `INTERNAL SERVER ERROR` | Erro interno da API
