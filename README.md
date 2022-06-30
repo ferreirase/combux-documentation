@@ -58,7 +58,7 @@ O atributo recebido `authorization_code` te garante passar para a próxima etapa
 #### 2. Gerando `access_token` e `refresh_token`:
 O `header` desta requisição deve conter as seguintes informações:
 ```http
-Content-Type: application/json;Authorization: Basic base64_string
+Content-Type: application/json;Authorization: Bearer base64_string
 ```
 :heavy_exclamation_mark: **Nota**: Esse `base64_string` deve ser uma string convertida em Base64 a partir do dado `client_id:client_secret`.
 
@@ -72,14 +72,14 @@ O corpo desta requisição deve conter:
 
 ```javascript
 {
-  "authorization_code" : string,
-  "token_type": string
+  "code" : string,
+  "grant_type": string
 }
 ```
 | Parameter | Type | Required | Description
 | :--- | :--- | :--- | :---
 | `authorization_code` | `string` | **TRUE**| Código gerado no passo anterior.
-| `token_type` | `string` | **TRUE**| Tipo do token. Deve ser `access_token`.
+| `grant_type` | `string` | **TRUE**| Tipo da solicitação. Deve ser `authorization_code`.
 
 A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
 
@@ -105,7 +105,7 @@ O atributo recebido `access_token` te garante acessar as informações a partir 
 #### 3. Atualizando `access_token` através do `refresh_token`:
 O `header` desta requisição deve conter as seguintes informações:
 ```http
-Content-Type: application/json;Authorization: Basic client_id:client_secret
+Content-Type: application/json;Authorization: Bearer client_id:client_secret
 ```
 **Note**: Esse `client_id:client_secret` deve ser uma string convertida em Base64.
 
@@ -119,11 +119,13 @@ O corpo desta requisição deve conter:
 
 ```javascript
 {
+  "grant_type": string,
   "refresh_token" : string
 }
 ```
 | Parameter | Type | Required | Description
 | :--- | :--- | :--- | :---
+| `grant_type` | `string` | **TRUE**| Tipo da solicitação. Deve ser `refresh_token`.
 | `refresh_token` | `string` | **TRUE**| Token de atualização gerado junto do token de acesso.
 
 A seguir estão descritas as possíveis respostas à requisição acima, sempre no formato JSON:
