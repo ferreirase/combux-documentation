@@ -200,26 +200,23 @@ O atributo `message` trar√° uma mensagem de erro correspondente o e `code` trar√
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
 {
-    "posto": {
-      "gas_station" : {
+  "gas_station" : {
       "cod_unity": number,
       "cnpj": string,
       "coordinates?": {
         "latitude": string,
         "longitude": string
        },
-      "photo_url": string
+    },
+    "photo_url": string,
+    "created_at": string,
+    "prices: [
+      {
+        "type": number/int,
+        "price": number/float
       },
-      "created_at": string,
-      "prices: [
-        {
-          "type": number/int,
-          "price": number/float
-        },
-        ...
-      ]
-    
-  }
+      ...
+    ]
 }
 ```
 
