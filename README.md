@@ -308,19 +308,17 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 
 ## Status codes photo processing
 
-| Status Code | Description |
-| :--- | :--- |
-| 🟢 200 | `OK` | Requisição realizada com sucesso
-|  🟢 201 | `CREATED` | Recurso criado com sucesso
-|:red_circle: 400 | `BAD REQUEST` | Erro na solicitação
-| :red_circle: 401 | `UNAUTHORIZED` | Recurso não autorizado
-| :red_circle: 404 | `NOT FOUND` | Recurso não encontrado
-| :red_circle: 500 | `INTERNAL SERVER ERROR` | Erro interno da API
+| Code | Step | Description |
+| :--- | :--- | :--- |
+| 1 | `SUCCESS` | Processamento realizado com sucesso
+| 2 | `ERRO_STEP01` | Não encontrou nenhuma placa na imagem
+| 3 | `ERRO_STEP02` | Nenhum texto encontrado
+| 4 | `ERRO_STEP03` | Não encontrou nenhum bloco de combustível
 
 
 ## Status codes HTTP Response
 
-| Status Code | Description |
+| Code | Description |
 | :--- | :--- |
 | 🟢 200 | `OK` | Requisição realizada com sucesso
 |  🟢 201 | `CREATED` | Recurso criado com sucesso
