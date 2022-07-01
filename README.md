@@ -171,7 +171,8 @@ Os seguintes dados devem ser enviados juntos no form-data:
 {
   "gas_station" : {
     "cod_unity": number,
-    "cnpj": string
+    "cnpj": string,
+    "terms_of_use": boolean,
   },
   "coordinates?": {
     "latitude": string,
@@ -205,6 +206,7 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
   "gas_station" : {
       "cod_unity": number,
       "cnpj": string,
+      "terms_of_use": boolean,
       "coordinates?": {
         "latitude": string,
         "longitude": string
@@ -212,6 +214,7 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
     },
     "photo_url": string,
     "created_at": string,
+    "status" 
     "prices: [
       {
         "type": number/int,
@@ -223,6 +226,8 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 ```
 
 O objeto retornado `posto` contém as informações do posto,  o `created_at` é a data de criação da foto  no formato ISO e o `prices` é um array de preços extraídos da foto enviada.
+
+A propriedade "type" dos objetos de "prices" será um number de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis).
 
 2. Atualização de preços manualmente
 
@@ -242,7 +247,8 @@ O corpo desta requisição deve conter:
 {
   "gas_station" : {
     "cod_unity": number,
-    "cnpj": string
+    "cnpj": string,
+    "terms_of_use": boolean,
   },
   "coordinates?": {
     "latitude": string,
@@ -284,6 +290,22 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
   "success": boolean
 }
 ```
+
+## Tipos de combustíveis
+
+| Fuel code | Description |  Description |
+| :--- | :--- | :--- |
+| 1 | `GASOLINA_COMUM` | Gasolina comum
+| 2 | `GASOLINA_ADITIVADA` | Gasolina aditivada 
+| 3 | `GASOLINA_PREMIUM` | Gasolina premium
+| 5 | `ETANOL` | Etanol comum
+| 6 | `ETANOL_ADITIVADO` | Etanol aditivado
+| 9 | `GNV` | Gás natural veicular
+| 10 | `DIESEL_S10` | Diesel S-10
+| 11 | `DIESEL_S10_ADITIVADO` | Diesel S-10 aditivado
+| 12 | `DIESEL_S500` | Diesel S-500
+| 13 | `DIESEL_S500_ADITIVADO` | Diesel S-500 aditivado
+
 
 ## Status Codes
 
