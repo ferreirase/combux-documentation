@@ -44,7 +44,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
   "code" : number
 }
 ```
-O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-codes-http-response) do erro gerado por esta requisição.
 
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
@@ -90,7 +90,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
   "code" : number
 }
 ```
-O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-codes-http-response) do erro gerado por esta requisição.
 
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
@@ -137,7 +137,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
   "code" : number
 }
 ```
-O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-codes-http-response) do erro gerado por esta requisição.
 
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
@@ -198,7 +198,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
   "code" : number
 }
 ```
-O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-code-http-response) do erro gerado por esta requisição.
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-codes-http-response) do erro gerado por esta requisição.
 
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
@@ -282,7 +282,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
   "code" : number
 }
 ```
-O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-codes-http-response) do erro gerado por esta requisição.
 
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
