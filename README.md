@@ -198,7 +198,7 @@ A seguir estão descritas as possíveis respostas à requisição acima, sempre 
   "code" : number
 }
 ```
-O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o código HTTP do erro gerado por esta requisição.
+O atributo `message` trará uma mensagem de erro correspondente o e `code` trará o [código HTTP](#status-code-http-response) do erro gerado por esta requisição.
 
 ### :heavy_check_mark: Se der tudo certo:
 ```javascript
@@ -227,7 +227,7 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 
 O objeto retornado `posto` contém as informações do posto,  o `created_at` é a data de criação da foto  no formato ISO e o `prices` é um array de preços extraídos da foto enviada.
 
-A propriedade "type" dos objetos de "prices" será um number de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis-http-response).
+A propriedade "type" dos objetos de "prices" será um number de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis).
 
 2. Atualização de preços manualmente
 
