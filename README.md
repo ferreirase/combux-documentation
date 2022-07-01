@@ -227,7 +227,9 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 
 O objeto retornado `posto` contém as informações do posto,  o `created_at` é a data de criação da foto  no formato ISO e o `prices` é um array de preços extraídos da foto enviada.
 
-A propriedade "type" dos objetos de "prices" será um number de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis).
+A propriedade "type" dos objetos de "prices" será o ID do combustível de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis).
+
+A propriedade "processing_status" será o ID de status do processamento da foto de acordo com a tabela de [Status codes photo processing](#status-codes-photo-processing).
 
 2. Atualização de preços manualmente
 
