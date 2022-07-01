@@ -214,7 +214,7 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
     },
     "photo_url": string,
     "created_at": string,
-    "status" 
+    "processing_status": number/int,
     "prices: [
       {
         "type": number/int,
@@ -227,7 +227,7 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 
 O objeto retornado `posto` contém as informações do posto,  o `created_at` é a data de criação da foto  no formato ISO e o `prices` é um array de preços extraídos da foto enviada.
 
-A propriedade "type" dos objetos de "prices" será um number de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis).
+A propriedade "type" dos objetos de "prices" será um number de acordo com a tabela de [Tipos de combustíveis](#tipos-de-combustíveis-http-response).
 
 2. Atualização de preços manualmente
 
@@ -306,8 +306,19 @@ O atributo `message` trará uma mensagem de erro correspondente o e `code` trar�
 | 12 | `DIESEL_S500` | Diesel S-500
 | 13 | `DIESEL_S500_ADITIVADO` | Diesel S-500 aditivado
 
+## Status codes photo processing
 
-## Status Codes
+| Status Code | Description |
+| :--- | :--- |
+| 🟢 200 | `OK` | Requisição realizada com sucesso
+|  🟢 201 | `CREATED` | Recurso criado com sucesso
+|:red_circle: 400 | `BAD REQUEST` | Erro na solicitação
+| :red_circle: 401 | `UNAUTHORIZED` | Recurso não autorizado
+| :red_circle: 404 | `NOT FOUND` | Recurso não encontrado
+| :red_circle: 500 | `INTERNAL SERVER ERROR` | Erro interno da API
+
+
+## Status codes HTTP Response
 
 | Status Code | Description |
 | :--- | :--- |
